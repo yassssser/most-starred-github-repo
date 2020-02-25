@@ -13,4 +13,8 @@ export class GithubService {
   getRepos(){
     return this.http.get("https://api.github.com/search/repositories?q=created:%3E2020-01-25&sort=stars&order=desc")
   }
+
+  searchRepository(query: string){
+    return this.http.get(`https://api.github.com/search/repositories?q=${query}`)
+  }
 }

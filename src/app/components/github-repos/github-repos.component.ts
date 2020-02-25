@@ -9,6 +9,8 @@ import { GithubService } from 'src/app/services/github.service';
 export class GithubReposComponent implements OnInit {
 
   repos: any = []
+  oldRepos: any =[]
+  search : string = ""
 
   constructor(private githubService: GithubService) { }
 
@@ -17,10 +19,18 @@ export class GithubReposComponent implements OnInit {
   }
 
   getAllRepos(){
-    this.githubService.getRepos().subscribe((res: any[]) => {
-      this.repos = res['items'] 
-      console.log(this.repos);
-      
-    })
+    this.githubService.getRepos().subscribe((res: any[]) => {this.oldRepos = this.repos = res['items']} )
   }
+
+  searchRepos(){
+    if(this.search === ""){
+      this.repos = this.oldRepos
+      return;
+    } else {
+    this.githubService.searchRepository(this.search).subscribe((res: any[]) => {
+        this.repos = res['items'] 
+    })
+    } 
+  }
+  
 }

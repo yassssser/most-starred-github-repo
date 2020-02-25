@@ -4,6 +4,18 @@
     </div>
 </div>
 
+<div class="row my-3">
+    <div class="col-md-12 input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text text-primary" id="basic-addon1">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+        <input type="text" [(ngModel)]="search"
+                           (keyup)="searchRepos()"
+                           class="form-control" placeholder="Search for Repository..." />
+    </div>
+</div>
 <div class="card my-2" *ngFor="let repo of repos">
     <div class="card-header text-info">
         {{ repo.full_name}}
@@ -17,7 +29,7 @@
             <h2>{{ repo.name}}</h2>
             <p class="my-3">{{ repo.description }}</p>
             <span class="badge badge-primary">Starts: {{ repo.stargazers_count}}</span>
-            <span class="badge badge-warning mx-2">Issues: {{ repo.open_issues}}</span>
+            <span class="badge badge-warning mx-2">Open issues: {{ repo.open_issues}}</span>
             <span>Submitted on {{repo.pushed_at | date}} by <a [href]="html_url" target="_blank">{{repo.owner.login}}</a></span>
         </div>
     </div>
