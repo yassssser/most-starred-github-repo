@@ -1,0 +1,34 @@
+<div class="row mt-3 mb-5">
+    <div class="col-md-6 mx-auto text-info">
+        <h1>Most starred Github repos</h1>
+    </div>
+</div>
+
+<div class="card my-2" *ngFor="let repo of repos">
+    <div class="card-header text-info">
+        {{ repo.full_name}}
+    </div>
+    <div class="card-body">
+        <div class="row">
+        <div class="col-md-4">
+            <img [src]="repo.owner.avatar_url" width="250px" height="250px" alt="Owner image">
+        </div>
+        <div class="col-md-8">
+            <h2>{{ repo.name}}</h2>
+            <p class="my-3">{{ repo.description }}</p>
+            <span class="badge badge-primary">Starts: {{ repo.stargazers_count}}</span>
+            <span class="badge badge-warning mx-2">Issues: {{ repo.open_issues}}</span>
+            <span>Submitted on {{repo.pushed_at | date}} by <a [href]="html_url" target="_blank">{{repo.owner.login}}</a></span>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- <div class="row my-2" *ngFor="let repo of repos">
+    <div class="col-md-4">
+        <img [src]="repo.owner.avatar_url" width="250px" height="250px" alt="Owner image">
+    </div>
+    <div class="col-md-8">
+        <h2>{{ repo.name}}</h2>
+        <p>{{ repo.description }}</p>
+    </div>
+</div> -->
